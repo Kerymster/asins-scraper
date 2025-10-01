@@ -1,11 +1,19 @@
 "use client";
 
 import { useAuth } from "@/contexts/AuthContext";
-import LandingPage from "@/components/landing/LandingPage";
-import DashboardLayout from "@/components/dashboard/DashboardLayout";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import LoginPage from "@/components/auth/LoginPage";
 
-export default function Home() {
+export default function Login() {
   const { user, loading } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (user && !loading) {
+      router.push("/");
+    }
+  }, [user, loading, router]);
 
   if (loading) {
     return (
@@ -33,8 +41,8 @@ export default function Home() {
   }
 
   if (user) {
-    return <DashboardLayout />;
+    return null;
   }
 
-  return <LandingPage />;
+  return <LoginPage />;
 }
