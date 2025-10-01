@@ -122,8 +122,8 @@ const Sidebar: React.FC = () => {
   ];
 
   return (
-    <aside className="w-64 bg-slate-50 border-r border-slate-200 min-h-screen">
-      <nav className="p-4">
+    <aside className="fixed top-16 left-0 h-[calc(100vh-4rem)] w-64 bg-gradient-to-b from-slate-50/95 to-white/95 border-r border-slate-200/60 backdrop-blur-md shadow-lg z-40">
+      <nav className="p-4 h-full overflow-y-auto scrollbar-thin scrollbar-thumb-slate-300 scrollbar-track-transparent hover:scrollbar-thumb-slate-400">
         <ul className="space-y-2">
           {menuItems.map((item) => {
             const isActive =
@@ -134,22 +134,39 @@ const Sidebar: React.FC = () => {
                 <Link
                   href={item.href}
                   className={`
-                    w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-left transition-all duration-200 cursor-pointer
+                    group w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left transition-colors duration-200 cursor-pointer relative overflow-hidden
                     ${
                       isActive
-                        ? "bg-amber-100 text-amber-800 border border-amber-200 shadow-sm"
-                        : "text-slate-700 hover:bg-slate-100 hover:text-slate-900"
+                        ? "bg-gradient-to-r from-amber-100 to-orange-50 text-amber-800 border border-amber-200/60 shadow-lg shadow-amber-100/50"
+                        : "text-slate-700 border border-transparent hover:bg-gradient-to-r hover:from-amber-100 hover:to-orange-50 hover:text-amber-800 hover:border-amber-200/60 hover:shadow-lg hover:shadow-amber-100/50 hover:scale-[1.02]"
                     }
                   `}
                 >
+                  {/* Active indicator */}
+                  {isActive && (
+                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-amber-500 to-orange-500 rounded-r-full"></div>
+                  )}
+
                   <span
                     className={`
-                    ${isActive ? "text-amber-600" : "text-slate-500"}
+                    transition-colors duration-200 group-hover:scale-110
+                    ${
+                      isActive
+                        ? "text-amber-600 drop-shadow-sm"
+                        : "text-slate-500 group-hover:text-amber-600 group-hover:drop-shadow-sm"
+                    }
                   `}
                   >
                     {item.icon}
                   </span>
-                  <span className="font-medium">{item.label}</span>
+                  <span className="font-semibold text-sm tracking-wide">
+                    {item.label}
+                  </span>
+
+                  {/* Hover effect overlay */}
+                  {!isActive && (
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
+                  )}
                 </Link>
               </li>
             );
