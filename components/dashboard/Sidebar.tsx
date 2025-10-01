@@ -1,16 +1,15 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-interface SidebarProps {
-  activeTab: string;
-  onTabChange: (tab: string) => void;
-}
-
-const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {
+const Sidebar: React.FC = () => {
+  const pathname = usePathname();
   const menuItems = [
     {
       id: "dashboard",
+      href: "/",
       label: "Dashboard",
       icon: (
         <svg
@@ -36,6 +35,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {
     },
     {
       id: "scraper",
+      href: "/scraper",
       label: "ASIN Scraper",
       icon: (
         <svg
@@ -55,6 +55,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {
     },
     {
       id: "analytics",
+      href: "/analytics",
       label: "Analytics",
       icon: (
         <svg
@@ -74,6 +75,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {
     },
     {
       id: "history",
+      href: "/history",
       label: "Scraping History",
       icon: (
         <svg
@@ -93,6 +95,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {
     },
     {
       id: "settings",
+      href: "/settings",
       label: "Settings",
       icon: (
         <svg
@@ -122,30 +125,33 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {
     <aside className="w-64 bg-slate-50 border-r border-slate-200 min-h-screen">
       <nav className="p-4">
         <ul className="space-y-2">
-          {menuItems.map((item) => (
-            <li key={item.id}>
-              <button
-                onClick={() => onTabChange(item.id)}
-                className={`
-                  w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-left transition-all duration-200 cursor-pointer
-                  ${
-                    activeTab === item.id
-                      ? "bg-amber-100 text-amber-800 border border-amber-200 shadow-sm"
-                      : "text-slate-700 hover:bg-slate-100 hover:text-slate-900"
-                  }
-                `}
-              >
-                <span
+          {menuItems.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <li key={item.id}>
+                <Link
+                  href={item.href}
                   className={`
-                  ${activeTab === item.id ? "text-amber-600" : "text-slate-500"}
-                `}
+                    w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-left transition-all duration-200 cursor-pointer
+                    ${
+                      isActive
+                        ? "bg-amber-100 text-amber-800 border border-amber-200 shadow-sm"
+                        : "text-slate-700 hover:bg-slate-100 hover:text-slate-900"
+                    }
+                  `}
                 >
-                  {item.icon}
-                </span>
-                <span className="font-medium">{item.label}</span>
-              </button>
-            </li>
-          ))}
+                  <span
+                    className={`
+                    ${isActive ? "text-amber-600" : "text-slate-500"}
+                  `}
+                  >
+                    {item.icon}
+                  </span>
+                  <span className="font-medium">{item.label}</span>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </nav>
     </aside>
