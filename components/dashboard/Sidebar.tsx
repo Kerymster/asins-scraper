@@ -9,7 +9,7 @@ const Sidebar: React.FC = () => {
   const menuItems = [
     {
       id: "dashboard",
-      href: "/",
+      href: "/overview",
       label: "Dashboard",
       icon: (
         <svg
@@ -126,7 +126,9 @@ const Sidebar: React.FC = () => {
       <nav className="p-4">
         <ul className="space-y-2">
           {menuItems.map((item) => {
-            const isActive = pathname === item.href;
+            const isActive =
+              pathname === item.href ||
+              (item.href === "/overview" && pathname === "/");
             return (
               <li key={item.id}>
                 <Link
