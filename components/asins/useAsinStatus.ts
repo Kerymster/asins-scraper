@@ -8,7 +8,7 @@ import {
   getDocs,
   serverTimestamp,
 } from "firebase/firestore";
-import { AsinStatus, AsinStatusData } from "./types";
+import { AsinStatusData } from "./types";
 
 export const useAsinStatus = () => {
   const { user, loading: authLoading } = useAuth();
