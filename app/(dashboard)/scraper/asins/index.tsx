@@ -33,7 +33,7 @@ const AsinsTable = () => {
       </div>
 
       {/* Sticky Summary Stats */}
-      <div className="sticky top-4 z-10">
+      <div className="sticky top-20 z-40">
         <SummaryStats totalAsins={asins.length} statusData={statusData} />
       </div>
 
