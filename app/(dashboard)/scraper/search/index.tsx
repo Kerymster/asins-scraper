@@ -1,5 +1,5 @@
-import LightningIcon from "@/icons/LightningIcon";
 import React from "react";
+import StartScrapingButton from "@/components/scraper/StartScrapingButton";
 
 const SearchSection = () => {
   return (
@@ -24,10 +24,7 @@ const SearchSection = () => {
             />
           </div>
           <div className="flex justify-end">
-            <button className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 text-white font-semibold py-3 px-8 rounded-lg hover:from-amber-600 hover:to-amber-700 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl cursor-pointer">
-              <LightningIcon size="md" />
-              Start Scraping
-            </button>
+            <StartScrapingButton />
           </div>
         </div>
       </div>
