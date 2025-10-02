@@ -28,13 +28,7 @@ export const useAmazonApi = () => {
       } catch (err) {
         const errorMessage =
           err instanceof Error ? err.message : "Unknown error occurred";
-        setError({
-          message: errorMessage,
-          status:
-            err instanceof Error && "status" in err
-              ? (err as any).status
-              : undefined,
-        });
+        setError({ message: errorMessage });
         console.error("Amazon API Error:", err);
         return null;
       } finally {
