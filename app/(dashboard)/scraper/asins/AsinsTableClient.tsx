@@ -6,9 +6,10 @@ import AsinTable from "@/components/asins/AsinTable";
 import SummaryStats from "@/components/asins/SummaryStats";
 import AsinLoadingState from "@/components/asins/AsinLoadingState";
 import AuthRequired from "@/components/asins/AuthRequired";
+import { AmazonCampaignData } from "@/types/amazon";
 
 interface AsinsTableClientProps {
-  campaignData: any;
+  campaignData: AmazonCampaignData;
 }
 
 const AsinsTableClient = ({ campaignData }: AsinsTableClientProps) => {
@@ -40,7 +41,8 @@ const AsinsTableClient = ({ campaignData }: AsinsTableClientProps) => {
             Campaign Data Available
           </h3>
           <p className="text-blue-700 text-sm">
-            Found {campaignData.campaigns?.length || 0} campaigns
+            Found {campaignData[0]?.campaignsByBrand?.ALL?.length || 0}{" "}
+            campaigns
           </p>
           <details className="mt-2">
             <summary className="text-blue-600 cursor-pointer text-sm">

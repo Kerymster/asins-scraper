@@ -1,22 +1,12 @@
 import { useState, useCallback } from "react";
-
-interface AmazonApiResponse {
-  // We'll define this based on the actual response structure
-  [key: string]: any;
-}
-
-interface AmazonApiError {
-  message: string;
-  status?: number;
-  code?: string;
-}
+import { AmazonCampaignData, AmazonApiError } from "@/types/amazon";
 
 export const useAmazonApi = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<AmazonApiError | null>(null);
 
   const searchCampaignsByBrands =
-    useCallback(async (): Promise<AmazonApiResponse | null> => {
+    useCallback(async (): Promise<AmazonCampaignData | null> => {
       setLoading(true);
       setError(null);
 

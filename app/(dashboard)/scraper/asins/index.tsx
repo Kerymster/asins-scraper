@@ -7,10 +7,13 @@ import SummaryStats from "@/components/asins/SummaryStats";
 import AsinLoadingState from "@/components/asins/AsinLoadingState";
 import AuthRequired from "@/components/asins/AuthRequired";
 import { extractAsinsFromCampaignData } from "@/utils/extractAsins";
+import { AmazonCampaignData } from "@/types/amazon";
 
 const AsinsTable = () => {
   const [asins, setAsins] = useState<string[]>([]);
-  const [campaignData, setCampaignData] = useState<any>(null);
+  const [campaignData, setCampaignData] = useState<AmazonCampaignData | null>(
+    null
+  );
   const [dataLoading, setDataLoading] = useState(false);
   const { statusData, loading, saving, handleStatusToggle, user } =
     useAsinStatus();
@@ -31,7 +34,7 @@ const AsinsTable = () => {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        const data = await response.json();
+        const data: AmazonCampaignData = await response.json();
         console.log("Campaign data fetched in ASINs page:", data);
         setCampaignData(data);
 

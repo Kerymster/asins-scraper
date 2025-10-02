@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
+import { AmazonApiResponse } from "@/types/amazon";
 
-export async function POST(request: NextRequest) {
+export async function POST(_request: NextRequest) {
   try {
     const response = await fetch(
       "https://affiliate-program.amazon.com/connect/api/campaign/search",
@@ -110,7 +111,7 @@ export async function POST(request: NextRequest) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const data = await response.json();
+    const data: AmazonApiResponse = await response.json();
     console.log("Amazon API Response (Server):", data);
 
     return NextResponse.json(data.responses);

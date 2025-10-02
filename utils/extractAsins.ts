@@ -1,9 +1,13 @@
+import { AmazonCampaignData } from "@/types/amazon";
+
 /**
  * Extracts and normalizes ASINs from Amazon campaign data
  * @param campaignData - The raw campaign data from Amazon API
  * @returns Array of unique ASINs
  */
-export const extractAsinsFromCampaignData = (campaignData: any): string[] => {
+export const extractAsinsFromCampaignData = (
+  campaignData: AmazonCampaignData
+): string[] => {
   if (
     !campaignData ||
     !Array.isArray(campaignData) ||
@@ -33,7 +37,7 @@ export const extractAsinsFromCampaignData = (campaignData: any): string[] => {
     // Extract all ASINs from all campaigns
     const allAsins: string[] = [];
 
-    allCampaigns.forEach((campaign: any, index: number) => {
+    allCampaigns.forEach((campaign, index: number) => {
       if (campaign && Array.isArray(campaign.campaignAsins)) {
         allAsins.push(...campaign.campaignAsins);
         console.log(
