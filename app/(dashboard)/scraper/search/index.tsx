@@ -20,7 +20,7 @@ const SearchSection = () => {
             <input
               type="text"
               placeholder="Enter ASIN code (e.g., B08N5WRWNW)"
-              className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-colors"
+              className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-colors placeholder:text-slate-500"
             />
           </div>
           <div className="flex justify-end">
