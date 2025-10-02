@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import { useCheckedAsins } from "@/components/asins/useCheckedAsins";
 import AsinDisplayTable from "@/components/asins/AsinDisplayTable";
 import CheckIcon from "@/icons/CheckIcon";
+import { useCheckedAsins } from "@/hooks/useCheckedAsins";
 
 const DashboardOverview = () => {
   const { checkedAsins, statusData, loading } = useCheckedAsins();

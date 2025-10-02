@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { useAsinStatus } from "@/components/asins/useAsinStatus";
+import { useAsinStatus } from "@/hooks/useAsinStatus";
 import AsinTable from "@/components/asins/AsinTable";
 import SummaryStats from "@/components/asins/SummaryStats";
 import AsinLoadingState from "@/components/asins/AsinLoadingState";
