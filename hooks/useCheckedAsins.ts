@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { db } from "@/lib/firebase";
 import { collection, getDocs } from "firebase/firestore";
-import { AsinStatusData } from "./types";
+import { AsinStatusData } from "../components/asins/types";
 
 export const useCheckedAsins = () => {
   const { user, loading: authLoading } = useAuth();
